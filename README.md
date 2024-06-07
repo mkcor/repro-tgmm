@@ -6,6 +6,7 @@ Reproduce segmentation results from open research in live imaging of mouse embry
     ssh mkcor@broome.cluster.recurse.com
     cd repro-tgmm/
     cd down/  # download the bioimaging data
+    cd ../load/  # load the data into Python
 
 ## References
 
