@@ -11,7 +11,7 @@ use the command-line interface (CLI).
 
 Connect to the FTP server:
 
-    $ ftp ftp.ebi.ac.uk
+    ftp ftp.ebi.ac.uk
 
 When prompted for a username, type in `ftp` or `anonymous` (with no password).
 Make sure that passive mode is on:
