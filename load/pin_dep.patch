@@ -1,0 +1,19 @@
+From a3319dec03aa7997b107d217a336d10779e6aa15 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Lars=20Gr=C3=BCter?= <lagru@mailbox.org>
+Date: Thu, 25 Jan 2024 13:14:02 +0100
+Subject: [PATCH] Pin dependencies
+
+---
+ pyproject.toml | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/pyproject.toml b/pyproject.toml
+index 3d25ae5..e60aca5 100755
+--- a/pyproject.toml
++++ b/pyproject.toml
+@@ -1,2 +1,2 @@
+ [build-system]
+-requires = ["cmake", "cython", "numpy", "setuptools", "scikit-build", "wheel"]
++requires = ["cmake==3.20.4", "cython==0.29.23", "numpy==1.21.0", "setuptools==57.0.0", "scikit-build==0.11.1", "wheel"]
+-- 
+2.43.0
