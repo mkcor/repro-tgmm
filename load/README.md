@@ -20,5 +20,5 @@
 
 ## References
 
-https://github.com/bhoeckendorf/pyklb/issues/11
+https://github.com/bhoeckendorf/pyklb/pull/12
 https://github.com/recursecenter/cluster-config/pull/59
