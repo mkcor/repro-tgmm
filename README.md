@@ -20,12 +20,14 @@ Reproduce segmentation results from open research in live imaging of mouse embry
 
     cd ~/repro-tgmm/
     pip install scikit-image==0.24.0
+    pip install zarr
 
 ## Workflow
 
     ssh mkcor@broome.cluster.recurse.com
     cd repro-tgmm/
     cd data/  # download the bioimaging data
+    source ~/envs/repro-tgmm/bin/activate
     cd ../load/  # load the data into Python
 
 ## References
