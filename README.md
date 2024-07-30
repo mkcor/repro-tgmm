@@ -1,26 +1,27 @@
 # repro-tgmm
 Reproduce segmentation results from open research in live imaging of mouse embryonic development at the single-cell level.
 
-## Set up computing environment
+## Create computing environments
 
     mkdir -p ~/envs
-    python3.9 -m venv ~/envs/repro-tgmm
-    source ~/envs/repro-tgmm/bin/activate
+
+    python3.9 -m venv ~/envs/load
+    source ~/envs/load/bin/activate
     pip install --upgrade pip
-    pip install numpy==1.26.4
-    pip install scikit-build
+    pip install -r requirements/load.txt
+    deactivate
 
-    cd ~/envs/
-    git clone https://github.com/bhoeckendorf/pyklb.git
-    cd pyklb/
-    git checkout skbuild
-    cp ~/repro-tgmm/load/pin_dep.patch .
-    git am < pin_dep.patch
-    pip install -v .
+    python3.9 -m venv ~/envs/proc
+    source ~/envs/proc/bin/activate
+    pip install --upgrade pip
+    pip install -r requirements/proc.txt
+    deactivate
 
-    cd ~/repro-tgmm/
-    pip install scikit-image==0.24.0
-    pip install zarr
+    python3.9 -m venv ~/envs/pres
+    source ~/envs/pres/bin/activate
+    pip install --upgrade pip
+    pip install -r requirements/pres.txt
+    deactivate
 
 ## Workflow
 

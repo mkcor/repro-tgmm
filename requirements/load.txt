@@ -1,0 +1,4 @@
+numpy==1.26.4
+scikit-build==0.18.0
+git+https://github.com/mkcor/pyklb.git@skbuild
+zarr==2.18.2
