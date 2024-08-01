@@ -45,4 +45,4 @@ Close the connection to the FTP server:
 
 ## References
 
-https://github.com/IDR/idr.openmicroscopy.org/pull/198
+* https://github.com/IDR/idr.openmicroscopy.org/pull/198

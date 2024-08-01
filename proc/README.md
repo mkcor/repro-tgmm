@@ -4,5 +4,5 @@
 
 ## References
 
-https://github.com/scikit-image/scikit-image/pull/7309
-https://gitlab.com/scikit-image/data/-/merge_requests/24
+* https://github.com/scikit-image/scikit-image/pull/7309
+* https://gitlab.com/scikit-image/data/-/merge_requests/24
