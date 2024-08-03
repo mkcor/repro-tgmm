@@ -57,3 +57,26 @@ local_thresh = ski.util.apply_parallel(
     dtype='uint16'
 )
 print('Maximum of threshold image:', local_thresh.max())
+
+binary_local = sample > local_thresh
+
+#####################################################################
+# We smooth out the locally thresholded image (which is binary), so we can
+# in turn threshold it globally.
+
+smooth = ski.util.apply_parallel(
+    ski.filters.gaussian,
+    binary_local,
+    chunks=(5, 50, 50),
+    extra_keywords={'sigma': 1.5},
+)
+
+thresholds = ski.filters.threshold_multiotsu(smooth, classes=3)
+regions = np.digitize(smooth, bins=thresholds)
+
+#####################################################################
+# We identify nuclei to be the brightest of the three classes and we remove
+# small objects.
+
+cells_noisy = smooth > thresholds[1]
+cells = ski.morphology.opening(cells_noisy, footprint=np.ones((3, 5, 5)))
