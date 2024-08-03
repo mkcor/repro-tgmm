@@ -35,7 +35,7 @@ print(f'The shape of the image is: {im3d.shape}')
 # Trim 3D image so that each axis is a multiple of 50.
 
 im3d = im3d[:800, :2000, :2150]
-sample = im3d[400:500, :, :1500]
+sample = im3d[400:500, :, :1700]
 print(f'The shape of the sample is: {sample.shape}')
 
 #####################################################################
