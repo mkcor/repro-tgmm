@@ -52,9 +52,9 @@ print(f'The shape of the sample is: {sample.shape}')
 local_thresh = ski.util.apply_parallel(
     ski.filters.threshold_local,
     sample,
-    chunks=50,
+    chunks=(5, 50, 50),
     extra_keywords={'block_size': 31},
-    dtype='uint16'
+    dtype='float64'
 )
 print('Maximum of threshold image:', local_thresh.max())
 
