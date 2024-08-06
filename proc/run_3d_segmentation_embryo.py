@@ -23,8 +23,8 @@ else:
     pref = '..'
 
 #####################################################################
-# View 3D image data
-# ==================
+print(f'Load 3D image data')
+print(f'# ================')
 
 filename = 'frame_184.zarr'
 filepath = os.path.join(pref, 'data', filename)
@@ -39,8 +39,8 @@ sample = im3d[400:500, :, :1500]
 print(f'The shape of the sample is: {sample.shape}')
 
 #####################################################################
-# Apply local thresholding
-# ========================
+print(f'Apply local thresholding')
+print(f'# ======================')
 
 # # global thresholding
 # def binary_global(x):
@@ -59,10 +59,11 @@ local_thresh = ski.util.apply_parallel(
 print('Maximum of threshold image:', local_thresh.max())
 
 binary_local = sample > local_thresh
+np.savez_compressed('binary_local.npz', binary_local)
 
 #####################################################################
-# We smooth out the locally thresholded image (which is binary), so we can
-# in turn threshold it globally.
+print(f'Smooth out (binary) locally thresholded image')
+print(f'# ===========================================')
 
 smooth = ski.util.apply_parallel(
     ski.filters.gaussian,
@@ -75,8 +76,8 @@ thresholds = ski.filters.threshold_multiotsu(smooth, classes=3)
 regions = np.digitize(smooth, bins=thresholds)
 
 #####################################################################
-# We identify nuclei to be the brightest of the three classes and we remove
-# small objects.
+print(f'Keep nuclei as brightest of the three classes')
+print(f'# ===========================================')
 
 cells_noisy = smooth > thresholds[1]
 cells = ski.morphology.opening(cells_noisy, footprint=np.ones((3, 5, 5)))
