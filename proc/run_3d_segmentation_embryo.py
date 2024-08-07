@@ -34,8 +34,9 @@ print(f'The shape of the image is: {im3d.shape}')
 #####################################################################
 # Trim 3D image so that each axis is a multiple of 50.
 
-im3d = im3d[:800, :2000, :2150]
-sample = im3d[400:500, :, :1500]
+#sample = im3d[:800, :2000, :2150]
+sample = im3d[400:500, :2000, :2150]
+del im3d
 print(f'The shape of the sample is: {sample.shape}')
 
 #####################################################################
@@ -56,10 +57,10 @@ local_thresh = ski.util.apply_parallel(
     extra_keywords={'block_size': 31},
     dtype='float64'
 )
-print('Maximum of threshold image:', local_thresh.max())
+print(f'Maximum of threshold image: {local_thresh.max()}')
 
 binary_local = sample > local_thresh
-np.savez_compressed('binary_local.npz', binary_local)
+del sample, local_thresh
 
 #####################################################################
 print(f'Smooth out (binary) locally thresholded image')
@@ -70,14 +71,22 @@ smooth = ski.util.apply_parallel(
     binary_local,
     chunks=(5, 50, 50),
     extra_keywords={'sigma': 1.5},
+    dtype='float64'
 )
+del binary_local
+
+#####################################################################
+print(f'Apply global thresholding')
+print(f'# =======================')
 
 thresholds = ski.filters.threshold_multiotsu(smooth, classes=3)
-regions = np.digitize(smooth, bins=thresholds)
+#regions = np.digitize(smooth, bins=thresholds)
 
 #####################################################################
 print(f'Keep nuclei as brightest of the three classes')
 print(f'# ===========================================')
 
 cells_noisy = smooth > thresholds[1]
+del smooth, thresholds
 cells = ski.morphology.opening(cells_noisy, footprint=np.ones((3, 5, 5)))
+del cells_noisy
