@@ -80,7 +80,6 @@ print(f'Apply global thresholding')
 print(f'# =======================')
 
 thresholds = ski.filters.threshold_multiotsu(smooth, classes=3)
-#regions = np.digitize(smooth, bins=thresholds)
 
 #####################################################################
 print(f'Keep nuclei as brightest of the three classes')
@@ -90,3 +89,22 @@ cells_noisy = smooth > thresholds[1]
 del smooth, thresholds
 cells = ski.morphology.opening(cells_noisy, footprint=np.ones((3, 5, 5)))
 del cells_noisy
+
+#####################################################################
+print(f'Use watershed algorithm')
+print(f'# =====================')
+
+distance = ski.util.apply_parallel(
+    sp.ndimage.distance_transform_edt,
+    cells,
+    chunks=(5, 50, 50),
+    dtype='float64'
+)
+local_max_coords = ski.feature.peak_local_max(
+    distance, min_distance=12, exclude_border=False
+)
+local_max_mask = np.zeros(distance.shape, dtype=bool)
+local_max_mask[tuple(local_max_coords.T)] = True
+del local_max_coords
+markers = ski.measure.label(local_max_mask)
+del local_max_mask
