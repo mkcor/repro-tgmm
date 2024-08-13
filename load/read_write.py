@@ -1,6 +1,7 @@
 import os
 import sys
 
+import numpy as np
 import pyklb as klb
 import zarr as zr
 
@@ -17,3 +18,9 @@ conv_filename = 'frame_184.zarr'
 conv_filepath = os.path.join(pref, 'data', conv_filename)
 zr.save(conv_filepath, data)
 print('Dataset successfully converted to Zarr format!')
+
+sample_filename = 'sample_frame_184.klb'
+sample_filepath = os.path.join(pref, 'data', sample_filename)
+sample = data[400:500, :2000, :2150]
+klb.writefull(np.ascontiguousarray(sample), sample_filepath)
+print('Sample dataset saved back to KLB format.')
