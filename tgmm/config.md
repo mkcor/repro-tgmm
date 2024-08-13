@@ -1,4 +1,4 @@
-# Example TGMM Config File
+# TGMM Config File
 
 ```
 #Configuration file to set parameters for Tracking with Gaussian Mixture Models (TGMM) software. 
@@ -9,11 +9,11 @@
 
 #================== PATH PARAMETERS ==================
 
-#File location. "?" symbols will be substituted by time point index.
-imgFilePattern=C:/Users/Fernando/cppProjects/TrackingGaussianMixtures/NM2013-paperRun/data/data/TM?????_timeFused_blending/SPC0_CM0_CM1_CHN00_CHN01.fusedStack_?????
+#Location of input data file (pattern).
+imgFilePattern=../data/outputs/sample_frame_184
 
 #Folder where results will be saved. This folder needs to exist and the software will generate a subfolder for each run.
-debugPathPrefix=E:/TGMMruns
+debugPathPrefix=../data/outputs/log/
 
 
 #================== MAIN PARAMETERS ==================

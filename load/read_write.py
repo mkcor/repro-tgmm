@@ -20,7 +20,7 @@ zr.save(conv_filepath, data)
 print('Dataset successfully converted to Zarr format!')
 
 sample_filename = 'sample_frame_184.klb'
-sample_filepath = os.path.join(pref, 'data', sample_filename)
+sample_filepath = os.path.join(pref, 'data', 'outputs', sample_filename)
 sample = data[400:500, :2000, :2150]
 klb.writefull(np.ascontiguousarray(sample), sample_filepath)
 print('Sample dataset saved back to KLB format.')
