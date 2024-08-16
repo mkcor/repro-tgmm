@@ -12,6 +12,7 @@ import sys
 import numpy as np
 import scipy as sp
 
+import dask.array as da
 import skimage as ski
 import zarr as zr
 
@@ -108,3 +109,16 @@ local_max_mask[tuple(local_max_coords.T)] = True
 del local_max_coords
 markers = ski.measure.label(local_max_mask)
 del local_max_mask
+
+d = da.from_array(distance, chunks=(5, 50, 50))
+c = da.from_array(cells, chunks=(5, 50, 50))
+m = da.from_array(markers, chunks=(5, 50, 50))
+f = da.map_blocks(
+    lambda a, b, c: ski.segmentation.watershed(a, markers=b, mask=c),
+    -d,
+    m,
+    c,
+    dtype='int32'
+)
+seg = f.compute()
+print('Number of segmented cells:', np.max(seg))
