@@ -56,6 +56,9 @@ Reproduce segmentation results from open research in live imaging of mouse embry
     logout
     scp mkcor@broome.cluster.recurse.com:~/repro-tgmm/data/outputs/*.npz view/.
     source ~/envs/view/bin/activate
+    cd view/
+    python explore_seg_results.py
+    deactivate
 
 ## References
 
