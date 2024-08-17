@@ -81,7 +81,7 @@ deathThrOpticalFlow=-1
 #--- Trimming supervoxels using Otsu's threshold to distinguish background from foreground
 
 #Minimum size (in voxels) of a super-voxel (smaller super-voxels will be deleted)
-minNucleiSize=50
+minNucleiSize=14
 #Maximum size (in voxels) of a super-voxel (considered when we apply Otsu's threshold)
 maxNucleiSize=3000
 #Maximum percentage of voxels in a super-voxel belonging to foreground (considered when we apply Otsu's threshold)

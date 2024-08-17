@@ -26,25 +26,26 @@ the file locations (see commit 01c21df).
 This prints step-by-step information, ending with:
 
     [...]
-    Building dendrogram took 7 secs
+    Building dendrogram took 6 secs
     Overall hierarchical segmentation computation took 31 secs
-    Writing to ../data/sample_frame_184_seg_conn74_rad2.bin
+    Writing to ../data/outputs/sample_frame_184_seg_conn74_rad2.bin
     Done writing.
 
 ## Output the TGMM segmentation
 
 We pass tau=14 because persistanceSegmentationTau=14 in the TGMM config file,
-and minSuperVoxelSzPx=50 because minNucleiSize=50.
+and minSuperVoxelSzPx=14 because we changed the value of minNucleiSize from 50 to 14,
+in order to detect more cells.
 
-    /home/mkcor/tgmm-paper/install/bin/ProcessStack_woGPU ../data/sample_frame_184_seg_conn74_rad2.bin 14 50
+    /home/mkcor/tgmm-paper/install/bin/ProcessStack_woGPU ../data/outputs/sample_frame_184_seg_conn74_rad2.bin 14 14
 
 Prints:
 
     ProcessStack Version list-2-gfd13c85 fd13c85
-    A total of 2283 labels for tau=14
-    KLB file written to ../data/sample_frame_184_seg_conn74_rad2.bin_tau14.klb
+    A total of 2491 labels for tau=14
+    KLB file written to ../data/outputs/sample_frame_184_seg_conn74_rad2.bin_tau14.klb
 
-In conclusion, 2283 cells were detected. 
+In conclusion, 2491 cells were detected.
 
 ## References
 

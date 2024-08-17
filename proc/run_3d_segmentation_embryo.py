@@ -42,8 +42,8 @@ print(f'The shape of the sample is: {sample.shape}')
 
 out_filepath = os.path.join(pref, 'data', 'outputs')
 out_filename = os.path.join(out_filepath, 'sample.npz')
-np.savez_compressed(out_filename, sample[50, :, :])
-print(f'Saved slice of data sample at {out_filename}')
+np.savez_compressed(out_filename, sample)
+print(f'Saved data sample at {out_filename}')
 
 #####################################################################
 print(f'Apply local thresholding')
@@ -96,6 +96,10 @@ del smooth, thresholds
 cells = ski.morphology.opening(cells_noisy, footprint=np.ones((3, 5, 5)))
 del cells_noisy
 
+out_filename = os.path.join(out_filepath, 'cells.npz')
+np.savez_compressed(out_filename, cells)
+print(f'Saved detected cells before watershed at {out_filename}')
+
 #####################################################################
 print(f'Use watershed algorithm')
 print(f'# =====================')
@@ -132,5 +136,5 @@ del d, c, m
 print('Number of segmented cells:', np.max(seg))
 
 out_filename = os.path.join(out_filepath, 'proc_seg.npz')
-np.savez_compressed(out_filename, seg[50, :, :])
-print(f'Saved slice of segmentation result at {out_filename}')
+np.savez_compressed(out_filename, seg)
+print(f'Saved (replicated) segmentation result at {out_filename}')

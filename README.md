@@ -39,13 +39,23 @@ Reproduce segmentation results from open research in live imaging of mouse embry
     cd repro-tgmm/
     cat data/README.md  # how to download the bioimaging data
 
+    cd tgmm/
+    /home/mkcor/tgmm-paper/install/bin/ProcessStack_woGPU config.md 184
+    /home/mkcor/tgmm-paper/install/bin/ProcessStack_woGPU ../data/outputs/sample_frame_184_seg_conn74_rad2.bin 14 14
+    cd ../
+
     source ~/envs/load/bin/activate
+    python load/save_tgmm_seg.py .  # save result from reproducibility
     python load/read_write.py .  # convert the data into zarr
     deactivate
 
     source ~/envs/proc/bin/activate
     python proc/run_3d_segmentation_embryo.py .  # process data
     deactivate
+
+    logout
+    scp mkcor@broome.cluster.recurse.com:~/repro-tgmm/data/outputs/*.npz view/.
+    source ~/envs/view/bin/activate
 
 ## References
 
