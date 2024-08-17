@@ -102,7 +102,7 @@ distance = ski.util.apply_parallel(
     dtype='float64'
 )
 local_max_coords = ski.feature.peak_local_max(
-    distance, min_distance=12, exclude_border=False
+    distance, min_distance=14, exclude_border=False
 )
 local_max_mask = np.zeros(distance.shape, dtype=bool)
 local_max_mask[tuple(local_max_coords.T)] = True
