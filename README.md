@@ -1,7 +1,7 @@
 # repro-tgmm
 Reproduce segmentation results from open research in live imaging of mouse embryonic development at the single-cell level.
 
-## Create computing environments
+## Create (remote) computing environments
 
     mkdir -p ~/envs
 
@@ -15,6 +15,16 @@ Reproduce segmentation results from open research in live imaging of mouse embry
     source ~/envs/proc/bin/activate
     pip install --upgrade pip
     pip install -r requirements/proc.txt
+    deactivate
+
+## Create (local) viewing environments
+
+    mkdir -p ~/envs
+
+    python3.11 -m venv ~/envs/view
+    source ~/envs/view/bin/activate
+    pip install --upgrade pip
+    pip install -r requirements/view.txt
     deactivate
 
     python3.9 -m venv ~/envs/pres
