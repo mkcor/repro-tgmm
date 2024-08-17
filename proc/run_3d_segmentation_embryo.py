@@ -40,6 +40,11 @@ sample = im3d[400:500, :2000, :2150]
 del im3d
 print(f'The shape of the sample is: {sample.shape}')
 
+out_filepath = os.path.join(pref, 'data', 'outputs')
+out_filename = os.path.join(out_filepath, 'sample.npz')
+np.savez_compressed(out_filename, sample[50, :, :])
+print(f'Saved slice of data sample at {out_filename}')
+
 #####################################################################
 print(f'Apply local thresholding')
 print(f'# ======================')
@@ -113,6 +118,8 @@ del local_max_mask
 d = da.from_array(distance, chunks=(5, 50, 50))
 c = da.from_array(cells, chunks=(5, 50, 50))
 m = da.from_array(markers, chunks=(5, 50, 50))
+del distance, cells, markers
+
 f = da.map_blocks(
     lambda a, b, c: ski.segmentation.watershed(a, markers=b, mask=c),
     -d,
@@ -121,4 +128,9 @@ f = da.map_blocks(
     dtype='int32'
 )
 seg = f.compute()
+del d, c, m
 print('Number of segmented cells:', np.max(seg))
+
+out_filename = os.path.join(out_filepath, 'proc_seg.npz')
+np.savez_compressed(out_filename, seg[50, :, :])
+print(f'Saved slice of segmentation result at {out_filename}')
