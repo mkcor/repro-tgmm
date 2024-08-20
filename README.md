@@ -37,7 +37,8 @@ Reproduce segmentation results from open research in live imaging of mouse embry
 
     ssh mkcor@broome.cluster.recurse.com
     cd repro-tgmm/
-    cat data/README.md  # how to download the bioimaging data
+    cd data/
+    cat README.md  # how to download the bioimaging data
 
     cd tgmm/
     /home/mkcor/tgmm-paper/install/bin/ProcessStack_woGPU config.md 184
