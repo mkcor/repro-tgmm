@@ -44,6 +44,10 @@ Reproduce segmentation results from open research in live imaging of mouse embry
     python load/read_write.py .  # convert data to zarr and save sample
     deactivate
 
+    source ~/envs/proc/bin/activate
+    python proc/run_3d_segmentation_embryo.py .  # process data
+    deactivate
+
     cd tgmm/
     /home/mkcor/tgmm-paper/install/bin/ProcessStack_woGPU config.md 184
     /home/mkcor/tgmm-paper/install/bin/ProcessStack_woGPU ../data/outputs/sample_frame_184_seg_conn74_rad2.bin 14 14
@@ -51,10 +55,6 @@ Reproduce segmentation results from open research in live imaging of mouse embry
 
     source ~/envs/load/bin/activate
     python load/save_tgmm_seg.py .  # save result from reproducibility
-    deactivate
-
-    source ~/envs/proc/bin/activate
-    python proc/run_3d_segmentation_embryo.py .  # process data
     deactivate
 
     logout
