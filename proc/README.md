@@ -1,5 +1,6 @@
 # Segment the embryo's cells with Scientific Python
 
+    source ~/envs/proc/bin/activate
     python run_3d_segmentation_embryo.py
 
 ## References

@@ -1,5 +1,6 @@
 # Load the data into Python
 
+    source ~/envs/load/bin/activate
     python read_write.py
 
 ## References
